@@ -38,7 +38,7 @@ double ILS(int n, int p, double alpha, double beta, int *s, const Cenario cen[],
 	    if (fo_2l < fo){
 	        fo = fo_2l;
 	        atualiza_vetor(s,s_2l,n);
-			MelhorIter = iter;
+		MelhorIter = iter;
 	    }
 		nivel++;
 	} // fim while vezesnivel
