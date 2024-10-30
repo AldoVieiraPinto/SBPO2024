@@ -21,7 +21,6 @@ using namespace std;
 #define inf 10e10 // Parametro usado para representar um numero suficientemente grande
 
 
-
 int main(int argc, char* argv[]) {
 	try {
 		/**============================
@@ -34,9 +33,9 @@ int main(int argc, char* argv[]) {
 			arq.close();
 			exit(EXIT_FAILURE);
 		}
-		int n; // Quantidade de nós
+		int n; // Quantidade de nÃ³s
 		int p; // Quantidade de hubs a serem ativados
-		int numcen; // Número de Cenários
+		int numcen; // NÃºmero de CenÃ¡rios
 		double alpha; // Fator de desconto entre hubs
 		double beta; // Fator de risco do CVaR
 		if (argc >= 2) //Coletar dados via linha de comando
@@ -47,15 +46,15 @@ int main(int argc, char* argv[]) {
 		alpha = atof(argv[5]);
 		beta = atof(argv[6]);
 		double m = numcen;
-		int ILSmax = 9;	// número máximo de iterações sem melhora
-		Cenario cen[numcen];  // struct Cenario armazena a probabilidade, a matriz de custos e a matriz de fluxos associados ao cenário
+		int ILSmax = 9;	// nÃºmero mÃ¡ximo de iteraÃ§Ãµes sem melhora
+		Cenario cen[numcen];  // struct Cenario armazena a probabilidade, a matriz de custos e a matriz de fluxos associados ao cenÃ¡rio
 		clock_t inicio_CPU, fim_CPU; 
 		for (int w = 0; w < numcen; w++){
 			cen[w].prob=1/m;
 			cen[w].fluxo = cria_matriz_double(n, n);
 			cen[w].custo = cria_matriz_double(n, n);
 		}
-		// leitura da matriz de custos e da matriz de fluxos de cada cenário
+		// leitura da matriz de custos e da matriz de fluxos de cada cenÃ¡rio
 		for (int w = 0; w < numcen; w++){
 			for (int i = 0; i < n; i++){
 				for (int j = 0; j < n; j++){
@@ -70,7 +69,7 @@ int main(int argc, char* argv[]) {
 		}
 		double fotimo;
 		double tempo;
-	    inicio_CPU = clock();
+	        inicio_CPU = clock();
 		int *s;
 		s = cria_vetor(n);
 		fotimo = ILS(n, p, alpha, beta, s, cen, numcen, ILSmax);
