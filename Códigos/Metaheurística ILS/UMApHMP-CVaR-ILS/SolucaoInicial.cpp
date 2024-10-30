@@ -12,10 +12,6 @@
 #include "SolucaoInicial.h"
 
 
-void construcao_aleatoria(int n, int *s){
-	embaralha_vetor(s, n);
-}
-
 void construcao_gulosa (int n, int *s, const Cenario cen[], int size){
   	double v[n];
 	for (int k = 0; k < n; k++){
