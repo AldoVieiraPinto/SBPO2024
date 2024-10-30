@@ -23,10 +23,10 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 	try {
+		// Entrada via linha de comando: UMApHMP-CVaR-ILS.exe instancia.txt n numcenarios p alpha beta
 		/**============================
 		 *  Leitura dos dados
 		 *=============================== */
-		// Entrada via linha de comando: UMApHMP-CVaR-ILS.exe instancia.txt n numcenarios p alpha beta
 		ifstream arq(argv[1]);
 		if (!arq.is_open()) {
 			cout << "Error openning file: " << argv[1] << endl;
