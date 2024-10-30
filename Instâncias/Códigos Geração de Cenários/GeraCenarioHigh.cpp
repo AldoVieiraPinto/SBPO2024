@@ -23,10 +23,10 @@ int main(int argc, char* argv[]) {
 			numcen = atoi(argv[2]);
 		int n; // número de nós lido da instância
 		arq >> n;
-		vector<vector<double > > w(n, vector<double>(n)); // declara um vetor de vetores para representar uma matriz com n linhas e n colunas - Quantidade de demanda a ser enviada entre os nós i e j
 		vector<vector<double > > c(n, vector<double>(n)); // Custos por enviar uma unidade de demanda entre os nós i e j
-		vector<vector<double > > watual(n, vector<double>(n)); // declara um vetor de vetores para representar uma matriz com n linhas e n colunas - Quantidade de demanda a ser enviada entre os nós i e j no cenário atual
-		vector<vector<double > > catual(n, vector<double>(n)); // Custos por enviar uma unidade de demanda entre os nós i e j no cenário atual
+		vector<vector<double > > w(n, vector<double>(n)); // Quantidade de demanda a ser enviada entre os nós i e j
+		vector<vector<double > > catual(n, vector<double>(n)); //  Custos por enviar uma unidade de demanda entre os nós i e j no cenário atual
+		vector<vector<double > > watual(n, vector<double>(n)); // Quantidade de demanda a ser enviada entre os nós i e j no cenário atual
 
 		for (int i = 0; i < n; i++) {   //Coletar custos 
 			for (int j = 0; j < n; j++) {
@@ -47,7 +47,7 @@ int main(int argc, char* argv[]) {
 		double min = 0.5;
 		double max = 1.5;
 		FILE* re;
-		re = fopen("CAB-High100.txt", "w+"); //exemplo de saída para CAB com 100 cenários
+		re = fopen("CAB-High10.txt", "w+"); //exemplo de saída para CAB com 10 cenários
 
 		
 		std::uniform_real_distribution<double> dis(min, max);
@@ -56,13 +56,13 @@ int main(int argc, char* argv[]) {
 		for (int m = 0; m < numcen; m++) {
 			for (int i = 0; i < n; i++) { //Cálculo do vetor o: Matriz com a soma de demanadas a partir de cada nó
 				for (int j = 0; j < n; j++) {
-					watual[i][j] = dis(gen) * w[i][j];
+					catual[i][j] = dis(gen) * c[i][j];
 				}
 			}
 
 			for (int i = 0; i < n; i++) { //Cálculo do vetor o: Matriz com a soma de demanadas a partir de cada nó
 				for (int j = 0; j < n; j++) {
-					catual[i][j] = dis(gen) * c[i][j];
+					watual[i][j] = dis(gen) * w[i][j];
 				}
 			}
 
