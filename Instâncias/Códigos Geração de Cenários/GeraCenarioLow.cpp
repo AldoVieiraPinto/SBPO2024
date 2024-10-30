@@ -2,12 +2,10 @@
 #include <iomanip>
 #include <fstream>
 #include <vector>
-#include <ilcplex/ilocplex.h> 
 #include <random>
 #include <chrono>
 
 using namespace std;
-ILOSTLBEGIN
 
 int main(int argc, char* argv[]) {
 	try {
@@ -32,13 +30,13 @@ int main(int argc, char* argv[]) {
 
 		for (int i = 0; i < n; i++) {   //Coletar fluxos 
 			for (int j = 0; j < n; j++) {
-				arq >> w[i][j];
+				arq >> c[i][j];
 			}
 		}
 
 		for (int i = 0; i < n; i++) {   //Coletar custos
 			for (int j = 0; j < n; j++) {
-				arq >> c[i][j];
+				arq >> w[i][j];
 			}
 		}
 
@@ -49,33 +47,33 @@ int main(int argc, char* argv[]) {
 		double min = 0.9;
 		double max = 1.1;
 		FILE* re;
-		re = fopen("CAB-Low100.txt", "w+"); //exemplo de saída para CAB com 100 cenários
+		re = fopen("CAB-Low10.txt", "w+"); //exemplo de saída para CAB com 10 cenários
 
 		
 		std::uniform_real_distribution<double> dis(min, max);
 
 
 		for (int m = 0; m < numcen; m++) {
-			for (int i = 0; i < n; i++) { //Cálculo do vetor o: Matriz com a soma de demanadas a partir de cada nó
-				for (int j = 0; j < n; j++) {
-					watual[i][j] = dis(gen) * w[i][j];
-				}
-			}
-
-			for (int i = 0; i < n; i++) { //Cálculo do vetor o: Matriz com a soma de demanadas a partir de cada nó
+			for (int i = 0; i < n; i++) { 
 				for (int j = 0; j < n; j++) {
 					catual[i][j] = dis(gen) * c[i][j];
 				}
 			}
 
+			for (int i = 0; i < n; i++) { 
+				for (int j = 0; j < n; j++) {
+					watual[i][j] = dis(gen) * w[i][j];
+				}
+			}
 
-			for (int i = 0; i < 25; i++) { //Cálculo do vetor o: Matriz com a soma de demanadas a partir de cada nó
+
+			for (int i = 0; i < 25; i++) { 
 				for (int j = 0; j < 25; j++) {
 					fprintf(re, "%10.5f \t ", catual[i][j]);
 				}
 				fprintf(re, "\n");
 			}
-			for (int i = 0; i < 25; i++) { //Cálculo do vetor o: Matriz com a soma de demanadas a partir de cada nó
+			for (int i = 0; i < 25; i++) { 
 				for (int j = 0; j < 25; j++) {
 					fprintf(re, "%10.5f \t ", watual[i][j]);
 				}
@@ -83,8 +81,8 @@ int main(int argc, char* argv[]) {
 			}
 		}
 	}
-	catch (IloException& ex) {
-		cerr << "Error: " << ex << endl;
+	catch (int erro) {
+		cerr << "Error: " << endl;
 	}
 	return 0;
 }
