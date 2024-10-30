@@ -115,7 +115,7 @@ int main(int argc, char* argv[]) {
 
 
 		// ====================================Formulação=============================================================== 
-		// minimize sum (m in 1..n) prob*custo[m][k]
+		// minimize ( (sum (m in 1..n) beta2*prob*v[m] ) + eta )
 		// ===============================================================================================================
 
 		IloExpr expfo(env);
@@ -331,12 +331,12 @@ int main(int argc, char* argv[]) {
 		cout << endl;
 
 		/**=====================================
-		*  Apresenta a configuração final
+		*  Apresenta a configuração final // Ativar se desejar salvar em um arquivo
 		* ====================================*/
 		//printf("\n Valor funcao objetivo: " "%f\t \n", (double)cplex.getObjValue());
 
 		//FILE *re;
-		//re = fopen("ResultadosTR.txt","w+");
+		//re = fopen("Resultados.txt","w+");
 		//fprintf(re, "\n Informacoes Gerais: " "%s\t%d\t%d\t%10.2f\n",  argv[1], n, p, alpha);
 		//fprintf(re, "\n Valor funcao objetivo: " "%f\t \n", (double) cplex.getObjValue ());
 		//fprintf(re, "\n Tempo de CPU: " "%f\t \n", (double) crono.getTime());
