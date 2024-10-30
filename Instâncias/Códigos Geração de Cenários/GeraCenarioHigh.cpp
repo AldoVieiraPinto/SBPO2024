@@ -2,12 +2,10 @@
 #include <iomanip>
 #include <fstream>
 #include <vector>
-#include <ilcplex/ilocplex.h> 
 #include <random>
 #include <chrono>
 
 using namespace std;
-ILOSTLBEGIN
 
 int main(int argc, char* argv[]) {
 	try {
@@ -30,15 +28,15 @@ int main(int argc, char* argv[]) {
 		vector<vector<double > > watual(n, vector<double>(n)); // declara um vetor de vetores para representar uma matriz com n linhas e n colunas - Quantidade de demanda a ser enviada entre os nós i e j no cenário atual
 		vector<vector<double > > catual(n, vector<double>(n)); // Custos por enviar uma unidade de demanda entre os nós i e j no cenário atual
 
-		for (int i = 0; i < n; i++) {   //Coletar fluxos 
+		for (int i = 0; i < n; i++) {   //Coletar custos 
 			for (int j = 0; j < n; j++) {
-				arq >> w[i][j];
+				arq >> c[i][j];
 			}
 		}
 
-		for (int i = 0; i < n; i++) {   //Coletar custos
+		for (int i = 0; i < n; i++) {   //Coletar fluxos
 			for (int j = 0; j < n; j++) {
-				arq >> c[i][j];
+				arq >> w[i][j];
 			}
 		}
 
@@ -83,8 +81,8 @@ int main(int argc, char* argv[]) {
 			}
 		}
 	}
-	catch (IloException& ex) {
-		cerr << "Error: " << ex << endl;
+	catch (int erro) {
+		cerr << "Error: " << endl;
 	}
 	return 0;
 }
